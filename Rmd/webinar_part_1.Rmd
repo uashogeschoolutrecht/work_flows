@@ -29,7 +29,7 @@ library(nlme)
 
 **This is part 1 of a series of three webinars**
 
- - Part 1; Introducing to Reproducible (Open) Science (June 11th, 2020)
+ - Part 1; Introducing Reproducible (Open) Science (June 11th, 2020)
  - Part 2; Managing your project files and data with 'Guerilla Analytics' (June 23rd, 2020)
  - Part 3; Reproducible (Open) Science - Tools (July 6th, 2020) 
 
@@ -43,8 +43,7 @@ In part 3, I will show you how to use this Github resource for your own work.</p
  1. Why Reproducible (Open) Science?
  1. The need for learning programming
  1. An example of Reproducible (Open) Science
- 1. Reproducible (Open) Science tools overview
-
+ 
 $Reproducible\ (Open)\ Science =$ 
 $Reproducible\ Research + Open\ Science$
 
@@ -142,8 +141,10 @@ knitr::include_graphics(
  >- To prevent publication bias (also negative results will be available in reproducible research)
  >- To be able to re-use and/or synthesize data (from many and diverse sources)
  >- To have access to it all!
-
-## An example
+ 
+<p style="font-size:14px">[Nature Collection on this topic](https://www.nature.com/collections/prbfkwmwvz)</p>
+ 
+## The _GUI problem_
 
 How would you 'describe' the steps of an analysis or creation of a graph when you use GUI* based software? 
 
@@ -328,23 +329,34 @@ annotation_df <- data.frame(Type=c("T1", "T2"),
                           )
                             
 set.seed(123)
-plot_ergo <- ergoStool %>%
-  ggplot(aes(x = reorder(Type, effort), y = effort)) + 
-  geom_boxplot(colour = "darkgreen", outlier.shape = NA) + 
-  geom_jitter(aes(colour = reorder(Subject, -effort)), 
-              width = 0.2, size = 3) +
-  scale_colour_manual(values = c("red","blue", "green", "darkblue", "darkgreen", "purple", "grey", "black", "darkgrey")) +
+ergoStool %>%
+  ggplot(aes(x = reorder(Type, effort), 
+             y = effort)) + 
+  geom_boxplot(colour = "darkgreen", 
+               outlier.shape = NA) + 
+  geom_jitter(aes(
+    colour = reorder(Subject, -effort)), 
+    width = 0.2, 
+    size = 3) +
+  scale_colour_manual(
+    values = c(
+      "red", "blue","green", 
+      "darkblue", "darkgreen", 
+      "purple", "grey", "black", 
+      "darkgrey")) +
   ylab("Effort (Borg scale score)") +
   xlab("Chair type") + 
   guides(colour=guide_legend(title="Subject id")) +
-  
   ylim(c(6,20)) +
-  
-   geom_signif(data=annotation_df,
-              aes(xmin=start, xmax=end, annotations=label, y_position=y),
-              textsize = 5, vjust = -0.2,
-              manual=TRUE) +
-  theme_bw()
+  geom_signif(
+    data=annotation_df,
+    aes(xmin=start, 
+    xmax=end, 
+    annotations=label, 
+    y_position=y),
+    textsize = 5, vjust = -0.2,
+    manual=TRUE) +
+  theme_bw() -> plot_ergo
 plot_ergo
 ```
 
