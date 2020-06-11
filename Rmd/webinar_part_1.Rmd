@@ -1,13 +1,13 @@
 ---
 title: "Reproducible (Open) Science"
-subtitle: "Introducing the tools"
-author: "[Marc A.T. Teunis, Ph.D. ](https://www.hu.nl/onderzoek/onderzoekers/marc-teunis)"
+author: '[Marc A.T. Teunis, PhD](https://www.hu.nl/onderzoek/onderzoekers/marc-teunis)'
 date: "`r Sys.time()`"
-always_allow_html: true
-output: 
-    ioslides_presentation
-widescreen: true
-
+output:
+  ioslides_presentation:
+    highlight: tango
+subtitle: Why, What and How in series of three webinars
+always_allow_html: yes
+widescreen: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -29,32 +29,41 @@ library(nlme)
 
 **This is part 1 of a series of three webinars**
 
- - Part 1; Introducing Reproducible (Open) Science (June 11th, 2020)
- - Part 2; Managing your project files and data with 'Guerilla Analytics' (~June 23rd, 2020)
- - Part 3; Reproducible (Open) Science @HU - Tools (July 6th, 2020) 
+ - Part 1; Introducing to Reproducible (Open) Science (June 11th, 2020)
+ - Part 2; Managing your project files and data with 'Guerilla Analytics' (June 23rd, 2020)
+ - Part 3; Reproducible (Open) Science - Tools (July 6th, 2020) 
 
-<p style="font-size:14px">The complete source code for this presentation and all dependent data and files can be found on [Github.com/uashogeschoolutrecht](https://github.com/uashogeschoolutrecht/work_flows) 
+<p style="font-size:18px">The complete source code for the webinars and all dependent data, and files can be found on [Github.com/uashogeschoolutrecht](https://github.com/uashogeschoolutrecht/work_flows).
+
+In part 3, I will show you how to use this Github resource for your own work.</p>
 
 ## Part 1; Introducing Reproducible (Open) Science
 
  1. When things go wrong 
  1. Why Reproducible (Open) Science?
  1. The need for learning programming
+ 1. An example of Reproducible (Open) Science
  1. Reproducible (Open) Science tools overview
 
+$Reproducible\ (Open)\ Science =$ 
+$Reproducible\ Research + Open\ Science$
 
-## Is chloroquine really an option?
-As you probably know, hydro-chloroquine was touted as a promising cure for COVID-19 by US President Donald Trump 
-```{r}
+## Is (hydroxy)chloroquine really an option for treating COVID-19?
+As you probably know, hydroxychloroquine was repeatedly touted as a promising cure for COVID-19 by US President Donald Trump 
+
+```{r, dpi = 70}
 knitr::include_graphics(
   file.path(
     image_dir,
-    "trump_chloroquinine.png"
+    "trump_chloroquine.png"
   )
 )
 ```
 
-## But how are we really doing with hydro-chloroquinine and the treatment for COVID-19?
+<p style="font-size:14px">https://www.washingtonpost.com/politics/2020/04/07/trumps-promotion-hydroxychloroquine-is-almost-certainly-about-politics-not-profits/</p>
+
+## But how are we really doing with (hydroxy)chloroquine as a treatment for COVID-19?
+
 ```{r}
 knitr::include_graphics(
   file.path(
@@ -65,41 +74,50 @@ knitr::include_graphics(
 
 ```
 
+<p style="font-size:14px">https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)31180-6/fulltext</p>
+
 ## What was the reason for retracting this paper?
 
-https://www.sciencemag.org/news/2020/06/two-elite-medical-journals-retract-coronavirus-papers-over-data-integrity-questions
+<p style="font-size:18px">_"Our independent peer reviewers informed us that Surgisphere would not transfer the full dataset, client contracts, and the full ISO audit report to their servers for analysis as such transfer would violate client agreements and confidentiality requirements"_</p>
 
-<p style="font-size:14px">_"Our independent peer reviewers informed us that Surgisphere would not transfer the full dataset, client contracts, and the full ISO audit report to their servers for analysis as such transfer would violate client agreements and confidentiality requirements"_</p>
-
- - Surgispere ('data owner') did not share raw data
- - At time of publication (raw)data and analysis-code was not included in the manuscript
+ - Company Surgisphere ('data owner') did not share raw data
+ - At time of publication (raw) data and analysis (code) was not included in the manuscript
  - The authors initiated the retract
 
-## The Lancet does not adhere to Reproducible (Open) Science
+<p style="font-size:14px">https://www.sciencemag.org/news/2020/06/two-elite-medical-journals-retract-coronavirus-papers-over-data-integrity-questions</p>
+
+## Why is this a problem?
+
+ >- Scientific conclusions get picked up by the media, retracting statements is difficult
+ >- The credibility of the Journal, the researchers and the affiliated institutions are at stake (people got sacked over this!)
+ >- Clinical studies to hydroxy(choloroquine) were halted because of this paper 
+ >- The credibility of the company Surgisphere is at stake (they should have prevented this...)
+ >- The credibility of Science as a whole is at stake ('in the eye of the beholder')
+
+## The Lancet does not adhere to Reproducible (Open) Science {.build}
 
 Would the Lancet have adopted the Reproducible (Open) Science framework:
 
- - There would have been no publication, so no retraction neccessary
- - The manuscript of this paper would not even have made it the first round of checks
- - All data, code, methods and conclusions would have been submitted 
- - This enables a complete peer-review process that also enables replication of (part of) the study
- 
- - Focus should be on the data and methods, not on the academic narratives and results ...
- - In physics and bioinformatics this is already common practice 
+ >- There would have been no publication, so no retraction necessary
+ >- The manuscript of this paper would not even have made it through the first check round
+ >- All data, code, methods and conclusions would have been submitted 
+ >- This would have enabled a complete and thorough peer-review process that includes replication of (part of) the data analysis of the study
+ >- Focus should be on the data and methods, not on the academic narratives and results ...
+ >- In physics and bioinformatics this is already common practice 
 
-## Data, methods and logic
+## Data, methods and logic {.build}
 
-<i>"...in science, three things matter:</i> 
+*[Brown, Kaiser & Allison, PNAS, 2018](https://doi.org/10.1073/pnas.1708279115)*
 
- 1. the data, 
- 1. the methods used to collect the data [...], and 
- 1. the logic connecting the data and methods to conclusions,
+"...in science, three things matter:
+
+ >1. the data, 
+ >1. the methods used to collect the data [...], and 
+ >1. the logic connecting the data and methods to conclusions,
 
 everything else is a distraction."
 
-<p style="font-size:14px"><i>[Brown, Kaiser & Allison, PNAS, 2018](https://doi.org/10.1073/pnas.1708279115)</p></i>
-
-## `Gollums` lurking about
+## `Gollums` lurking about {.build}
 
 ```{r, dpi = 80}
 knitr::include_graphics(
@@ -110,25 +128,28 @@ knitr::include_graphics(
 )
 ```
 
-<p style="font-size:14px">[Brown, Kaiser & Allison, 2018; PNAS](https://doi.org/10.1073/pnas.1708279115)</p>
+ "In one case, a group accidentally used reverse-coded variables, making their conclusions the opposite of what the data supported."
 
-"In one case, a group accidentally used reverse-coded variables, making their conclusions the opposite of what the data supported."
+ "In another case, authors received an incomplete dataset because entire categories of data were missed; when corrected, the qualitative conclusions did not change, but the quantitative conclusions changed by a factor of >7"
 
-"In another case, authors received an incomplete dataset because entire categories of data were missed; when corrected, the qualitative conclusions did not change, but the quantitative conclusions changed by a factor of >7"
+ <p style="font-size:14px">[Brown, Kaiser & Allison, 2018; PNAS](https://doi.org/10.1073/pnas.1708279115)</p>
 
-## Why Reproducible (Open) Science?
+## Why we need Reproducible (Open) Science?
 
- - To assess validity of science and methods we need access to data, methods and conclusions
- - To learn from choices other researchers made
- - To learn from omissions, mistakes or errors
- - To prevent publication bias (also negative results will be available in reproducible research)
- - To be able to re-use and/or synthesize data (from multiple sources)
+ >- To assess validity of science and methods we need access to data, methods and conclusions
+ >- To learn from choices other researchers made
+ >- To learn from omissions, mistakes or errors
+ >- To prevent publication bias (also negative results will be available in reproducible research)
+ >- To be able to re-use and/or synthesize data (from many and diverse sources)
+ >- To have access to it all!
 
-## Connecting data to methods to conclusions
+## An example
 
-How would you 'describe' the steps of an analysis or creation of a graph when you use GUI based software?
+How would you 'describe' the steps of an analysis or creation of a graph when you use GUI* based software? 
 
-```{r, dpi = 60}
+_"You can only do this using code, so it is (basically) impossible in a GUI"_**
+
+```{r, dpi = 80}
 knitr::include_graphics(
   file.path(
     image_dir,
@@ -137,129 +158,68 @@ knitr::include_graphics(
 )
 ```
 
-## Programming is essential for Open Science
+<p style="font-size:14px">*[Graphical User Interface (GUI)...is a form of user interface that allows users to interact with electronic devices through graphical icons and audio indicator such as primary notation, instead of text-based user interfaces, typed command labels or text navigation...](https://en.wikipedia.org/wiki/Graphical_user_interface)</p>
 
- - Only programming an analysis (or creation of a graph) records every step
- - Learning to use a programming language to perform data analysis and create graphs takes time but pays of at the long run, (for all of science)
+<p style="font-size:14px">**The file "./Rmd/steps_to_graph_from_excel_file.html" shows you how to do this using the programming language R. In webinar part 3, we will revisit this example.</p>
+
+## Programming is essential for Reproducible (Open) Science {.build}
+
+ >- Only programming an analysis (or creation of a graph) records every step
+ >- The script(s) function as a (data) analysis journal 
+ >- Code is the logic that connects the data and methods to conclusions 
+ >- Learning to use a programming language takes time but pays of at the long run (for all of science)
 
 **(Literate) programming is a way to connect narratives to data, methods and results**
-```{r, echo=TRUE}
+
+```{r}
 knitr::include_graphics(file.path(image_dir,"rmd_printscr.png"))
 ```
 
 ## To  replicate a scientific study we need at least:
 
- > - Scientific context, research questions and state of the art [P]
- > - (Experimental) model or characteristics of population or matter studied [P]
- > - Data that was generated and corresponding meta data [D]
- > - **Exact** (experimental) design of the study [P, D, C]
- > - Exploratory data analysis of the data [C]
- > - **Exact** methods that were used to conduct any formal inference [_P_, C]
+ > - Scientific context, research questions and state of the art [<mark>P<mark/>]
+ > - (Experimental) model or characteristics of population or matter studied [<mark>P</mark>]
+ > - Data that was generated and corresponding meta data [<mark>D</mark>, _C_]
+ > - **Exact** (experimental) design of the study [<mark>P</mark>, _D_, <mark>C</mark>]
+ > - Exploratory data analysis of the data [_P_, <mark>C</mark>]
+ > - **Exact** methods that were used to conduct any formal inference [_P_, <mark>C</mark>]
  > - Model diagnostics [_C_]
- > - Interpretations of the results/model fitting process [_P_, _C_]
- > - Conclusions and academic scoping of the results [P]
- > - **Access to all of the above** [OAcc, OSrc]
+ > - Interpretations of the (statistical) model results/model fitting process [_P_, _C_]
+ > - Conclusions and academic scoping of the results [<mark>P</mark>, _C_]
+ > - **Access to all of the above** [<mark>OAcc, OSrc</mark>]
 
 <p style="font-size:14px">$P = Publication$, $D = Data$, $C = Code$, $OAcc = Open\ Access$, $OSrc = Open\ Source$ </p> 
 
-## Example; The Open Science Framework [OSF](https://osf.io/)
-```{r}
-knitr::include_graphics(
-  here::here(
-    "images",
-    "cos-shield.png")
-)
-```
-
-$Reproducible\ Science = P + D + C + OAcc + OSrc$ 
-
-**OSF has it all**
-
-## OSF - Reproducibility Project: Psychology
-
- - 100 publications in Psychology journals
- - Results form half of these publications could be reproduced
- - Full access to P, D and C in [OSF](https://osf.io/ezcuj/)
- - The publication is not published in an OAcc journal
- - [The submitted manuscript is available here](http://pps.sagepub.com/content/7/6/657.abstract)
- - [The R code used is available here](https://osf.io/fkmwg/)  
- 
- $RP:Psychology = P + D + C + OSrc$
-
-## Tools to enable Open Science (1/3)
-
-1 - Data Science programming languages
-
-```{r, dpi = 80}
-knitr::include_graphics(
-  file.path(
-    image_dir,
-    "data_science_languages",
-    "InkedDia1_LI.jpg"
-  )
-)
-```
-
-
-## Tools to enable Open Science (2/3)
-
-2 - Data Science infrastructure & software
-
-```{r, dpi = 80}
-knitr::include_graphics(
-  file.path(
-    image_dir,
-    "data_science_languages",
-    "Dia2.jpg"
-  )
-)
-```
-
-## Tools to enable Open Science (3/3)
-
-3 - Data Science learning tools
-
-```{r, dpi = 80}
-knitr::include_graphics(
-  file.path(
-    image_dir,
-    "data_science_languages",
-    "Dia3.jpg"
-  )
-)
-```
-
-## A short example of reproducible science
+## A short example of Reproducible (Open) Science
 
 Assume we have the following question:
-
 "Which of 4 types of chairs takes the least effort to arise from when seated in?"
-
 We have the following setup:
 
  - 4 different types of chairs
  - 9 different subjects (probably somewhat aged)
- - Each subject is required to provide a score (from 6 to 20, 6 being very lightly streneous, 20 being very very extremely streneous) when arising from each of the 4 chairs.
+ - Each subject is required to provide a score (from 6 to 20, 6 being very lightly strenuous, 20 being extremely strenuous) when arising from each of the 4 chairs. There is some 'wash-out' time in between the trials. The chair order is randomised.
 
-To analyze this experiment statistically,  
-the model would need to include: the rating score as the **measured (or dependent) variable**, the type of chair as the **experimental factor** and the subject as the **blocking factor**
+To analyze this experiment statistically, the model would need to include: the rating score as the **measured (or dependent) variable**, the type of chair as the **experimental factor** and the subject as the **blocking factor**
 
 ## Mixed effects models
 
-A typical analysis method for this type of randomized block design is a so-called 'multi-level' or also called 'mixed-effects' or 'hiarachical' models. An analysis method much used in clinical or biological scientific practice. 
+A typical analysis method for this type of randomized block design is a so-called 'multi-level' or also called 'mixed-effects' or 'hierarchical' models. An analysis method much used in clinical or biological scientific practice. 
  
 You could also use one-way ANOVA but I will illustrate why this is not a good idea 
 
-## What do we need to replicate the science of this experiment?
+## What do we minimally need, to replicate the science of this experiment? {.build}
 
-I will illustrate: 
+I will show:
+
+ >- the data 
+ >- an exploratory graph 
+ >- a statistical model 
+ >- the statistical model results
+ >- a model diagnostic
+ >- some conclusions 
  
- - the data and an exploratory graph, 
- - the statistical model, 
- - the statistical model and the results   
- - the conclusions 
- 
-in the next four slides. Hopefully this will illustrate the power of using literate programming to communicate such an analysis. 
+In the next few slides, I will hopefully convince you of the power of (literate) programming to communicate such an analysis. 
 
 <p style="font-size:14px">[Example reproduced from: Pinheiro and Bates, 2000, _Mixed-Effects Models in S and S-PLUS_, Springer, New York.](https://cran.r-project.org/web/packages/nlme/index.html)</p>
  
@@ -291,8 +251,8 @@ plot_ergo
 
 ## Mind the variability per subject, what do you see?
 
- - Can you say something about within-subject variability (mind 'Minster Blue')?
- - Can you say something about between-subject variability (mind 'Mister Green', vs 'Mister Black')?
+ - Can you say something about within-subject variability (note 'Minster Blue')?
+ - Can you say something about between-subject variability (note 'Mister Green', vs 'Mister Black')?
  - Which chair type takes, on average the biggest effort to arise from?
  
 ```{r, fig.width=5, fig.height=3}
@@ -329,25 +289,25 @@ result <- ergo_model %>% summary()
 result$tTable %>% as.data.frame() %>% knitr::kable()
 ```
 
-## Model diagnostics 
+## Model diagnostics {.build}
 
- - Diagnostics of a fitted model is the most important step in a statistical analysis
- - In most scientific papers the details are lacking 
- - Did the authors omit to perform this step? Or did they not report it?
- - If you do not want to include it in your paper, put it in an appendix!
+ >- Diagnostics of a fitted model is the most important step in a statistical analysis
+ >- In most scientific papers the details are lacking 
+ >- Did the authors omit to perform this step? Or did they not report it?
+ >- If you do not want to include it in your paper, put it in an appendix!
  
 A residual plot shows the 'residual' error ('unexplained variance') after fitting the model. Under the Normality assumption standardized residuals should:
  
- 1. Be normally distributed around 0
- 1. Display no obvious 'patters'
- 1. Should display overall equal 'spread' above and below 0 ('assumption of equal variance')
+ >1. Be normally distributed around 0
+ >1. Display no obvious 'patters'
+ >1. Should display overall equal 'spread' above and below 0 ('assumption of equal variance')
  
 ## Residual plot
 ```{r, echo=TRUE}
 plot(ergo_model) ## type = 'pearson' (standardized residuals)
 ```
 
-## Conclusions in a plot
+## The conclusions in a plot
 ```{r}
 # install.packages("ggsignif")
 library(ggsignif)
@@ -388,4 +348,36 @@ plot_ergo <- ergoStool %>%
 plot_ergo
 ```
 
+## And the most important part...
 
+odz: _Practice what you preach_
+
+If you want to reproduce, add-on, falsify or apply your own ideas to this example, you can find the code (and data) in [Github.com](https://github.com/uashogeschoolutrecht/work_flows)
+
+**In webinar 3, I will show you how to actually run, use and organize code like this!**
+
+```{r, dpi = 60}
+knitr::include_graphics(
+  file.path(image_dir,
+  "git_collaboration.png")
+)
+```
+
+## Thank you for your attention!
+
+```{r, dpi = 150}
+knitr::include_graphics(
+  file.path(
+    image_dir,
+    "Pepper.png")
+)
+```
+
+**UPCOMING WEBINARS:**
+
+ - Part 2; Managing your project files and data with 'Guerilla Analytics' 
+ (~June 23rd, 2020)
+ - Part 3; Reproducible (Open) Science @HU - Tools (~July 6th, 2020)
+ 
+ [Peer Support Group Data Science](tln.hu.nl)
+ [support voor onderzoek](https://bibliotheek.hu.nl/onderzoekers/)
