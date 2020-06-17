@@ -49,7 +49,11 @@ knitr::include_graphics(path_to_messy_excel, dpi = 110)
 
 ## Let's read this messy Excel file into R
 ```{r}
-path_to_messy_excel_data <- file.path(root, "data", "messy_excel.xlsx")
+path_to_messy_excel_data <- file.path(
+  root, 
+  "data-raw",
+  "D020",
+  "messy_excel.xlsx")
 messy <- readxl::read_excel(path = path_to_messy_excel_data, sheet = 1 )
 head(messy, 8)
 ```
@@ -239,8 +243,35 @@ ggplot(aes(x = result,
   geom_jitter(position = "jitter")
 ```
 
-## Plot
+## Plots
 ```{r}
 correlation
-cor
+
 ```
+
+## Write to disk
+```{r}
+readr::write_csv(
+  combined,
+  here::here(
+  "data",
+  "D020",
+  "tidy_excel.csv"
+  )
+)
+
+## md5 sums
+tools::md5sum(files = here::here(
+  "data",
+  "D020",
+  "tidy_excel.csv"
+  )) %>% readr::write_lines(
+  path = 
+    here::here(
+      "data",
+      "D020",
+      paste("tidy_excel.csv.md5", sep = "_")
+      ))
+
+```
+

@@ -1,0 +1,116 @@
+params <-
+list(month = "April May June", year = 2020L, geo_id = "NL")
+
+## ----setup, include=FALSE--------------------------------------------------------
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  error = FALSE
+  
+  )
+
+
+## --------------------------------------------------------------------------------
+## Packages
+library(utils)
+library(tidyverse)
+library(tools)
+
+
+## ---- echo=TRUE------------------------------------------------------------------
+## Data
+#read the Dataset sheet into “R”. The dataset will be called "data".
+data <- read_csv(
+  "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", 
+  na = "")
+
+
+
+## ---- include=FALSE--------------------------------------------------------------
+
+## Filter for `r params$month` and `r params$geo_id`
+## create a conversion table to go from month name to month integer
+convert_months <- tibble(
+  month_name = c(
+    "january",
+    "february",
+    "march",
+    "april",
+    "may",
+    "june",
+    "july",
+    "august",
+    "september",
+    "october",
+    "november",
+    "december"),
+  month_number = c(1:12))
+
+  m_names <- str_split(tolower(params$month), pattern = " ") %>% unlist()
+
+
+  month_id <- convert_months %>%
+    dplyr::filter(
+      month_name %in% m_names) %>% 
+    dplyr::select(month_number)
+  
+  id <- month_id$month_number
+
+geo_ids <- str_split(string = params$geo_id, pattern = " ") %>% unlist()
+
+data_filter <- data %>%
+  dplyr::filter(
+    month %in% id,
+     geoId %in% geo_ids
+)
+  
+char_col <- map_lgl(
+  .x = data_filter,
+  .f = is.numeric 
+)
+
+map(
+  .x = data_filter[, !char_col],
+  .f = unique
+)
+
+country_names <- data_filter$countriesAndTerritories %>% unique() %>%
+  paste(collapse = ", ")
+
+Caps <- function(x) {
+s <- strsplit(x, " ")[[1]]
+paste(toupper(substring(s, 1,1)), substring(s, 2),
+sep="", collapse=" ")
+}
+
+
+
+
+## ---- fig.cap=paste("Cases for", params$month, collapse = ", ", "and" , country_names)----
+data_filter <- data_filter %>% 
+  mutate(date_time = lubridate::dmy(dateRep))
+
+#names(data_filter)
+plot_cases <- data_filter %>%
+  ggplot(aes(x = date_time, y = cases)) +
+  geom_point(aes(colour = geoId)) +
+  geom_line(aes(group = geoId, colour = geoId))
+
+plot_cases
+
+
+
+## ---- fig.cap=paste("Deaths for", params$month, "and" , country_names)-----------
+data_filter <- data_filter %>% 
+  mutate(date_time = lubridate::dmy(dateRep))
+
+#names(data_filter)
+plot <- data_filter %>%
+  ggplot(aes(x = date_time, y = deaths)) +
+  geom_point(aes(colour = geoId)) +
+  geom_line(aes(group = geoId, colour = geoId))
+
+plot
+
+

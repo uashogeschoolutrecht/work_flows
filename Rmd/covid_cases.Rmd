@@ -1,11 +1,11 @@
 ---
 params:
-   month:  January April May
+   month:  April May June
    year: 2020
-   geo_id: NL BE UK SE
+   geo_id: NL BE 
 title: "`r paste('Covid Cases for', params$month, 'in', params$geo_id)`"
 author: "Marc A.T. Teunis"
-date: "6/3/2020"
+date: "r Sys.time()"
 output: html_document
 
 
@@ -30,13 +30,19 @@ library(tools)
 ```
 
 
+
 ```{r, echo=TRUE}
 ## Data
 #read the Dataset sheet into “R”. The dataset will be called "data".
-data <- read_csv(
-  "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", 
-  na = "")
-
+#data <- read_csv(
+#  "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", 
+#  na = "")
+source(
+  here::here(
+    "data-raw",
+    "D010",
+    "supporting",
+    "covid_ecdc_cases_geography.R"))
 ```
 
 
@@ -97,11 +103,12 @@ paste(toupper(substring(s, 1,1)), substring(s, 2),
 sep="", collapse=" ")
 }
 
+cap_cases <- paste("Cases for", params$month, "and", country_names)
 
 ```
 
 ## Cases
-```{r, fig.cap=paste("Cases for", params$month, collapse = ", "), "and" , country_names)}
+```{r, fig.cap= cap_cases}
 data_filter <- data_filter %>% 
   mutate(date_time = lubridate::dmy(dateRep))
 

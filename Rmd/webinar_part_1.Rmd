@@ -5,7 +5,7 @@ date: "`r Sys.time()`"
 output:
   ioslides_presentation:
     highlight: tango
-subtitle: Why, What and How in series of three webinars
+subtitle: Why, What and How in a series of three webinars
 always_allow_html: yes
 widescreen: yes
 ---
