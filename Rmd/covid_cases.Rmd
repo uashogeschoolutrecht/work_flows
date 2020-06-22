@@ -1,14 +1,16 @@
 ---
-params:
-   month:  April May June
-   year: 2020
-   geo_id: NL BE 
 title: "`r paste('Covid Cases for', params$month, 'in', params$geo_id)`"
 author: "Marc A.T. Teunis"
-date: "r Sys.time()"
-output: html_document
-
-
+date: "`r Sys.time()`"
+output:
+  html_document: default
+  powerpoint_presentation: default
+  word_document: default
+  pdf_document: default
+params:
+  geo_id: NL BE
+  month: April May June
+  year: 2020
 ---
 
 ```{r setup, include=FALSE}
@@ -28,8 +30,6 @@ library(utils)
 library(tidyverse)
 library(tools)
 ```
-
-
 
 ```{r, echo=TRUE}
 ## Data

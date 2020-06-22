@@ -1,7 +1,7 @@
 params <-
-list(month = "April May June", year = 2020L, geo_id = "NL")
+list(month = "April May June", year = 2020L, geo_id = "NL BE")
 
-## ----setup, include=FALSE--------------------------------------------------------
+## ----setup, include=FALSE----------------------------------------------------------------------
 knitr::opts_chunk$set(
   echo = FALSE,
   warning = FALSE,
@@ -11,23 +11,28 @@ knitr::opts_chunk$set(
   )
 
 
-## --------------------------------------------------------------------------------
+## ----------------------------------------------------------------------------------------------
 ## Packages
 library(utils)
 library(tidyverse)
 library(tools)
 
 
-## ---- echo=TRUE------------------------------------------------------------------
+## ---- echo=TRUE--------------------------------------------------------------------------------
 ## Data
 #read the Dataset sheet into “R”. The dataset will be called "data".
-data <- read_csv(
-  "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", 
-  na = "")
+#data <- read_csv(
+#  "https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", 
+#  na = "")
+source(
+  here::here(
+    "data-raw",
+    "D010",
+    "supporting",
+    "covid_ecdc_cases_geography.R"))
 
 
-
-## ---- include=FALSE--------------------------------------------------------------
+## ---- include=FALSE----------------------------------------------------------------------------
 
 ## Filter for `r params$month` and `r params$geo_id`
 ## create a conversion table to go from month name to month integer
@@ -84,10 +89,11 @@ paste(toupper(substring(s, 1,1)), substring(s, 2),
 sep="", collapse=" ")
 }
 
+cap_cases <- paste("Cases for", params$month, "and", country_names)
 
 
 
-## ---- fig.cap=paste("Cases for", params$month, collapse = ", ", "and" , country_names)----
+## ---- fig.cap= cap_cases-----------------------------------------------------------------------
 data_filter <- data_filter %>% 
   mutate(date_time = lubridate::dmy(dateRep))
 
@@ -101,7 +107,7 @@ plot_cases
 
 
 
-## ---- fig.cap=paste("Deaths for", params$month, "and" , country_names)-----------
+## ---- fig.cap=paste("Deaths for", params$month, "and" , country_names)-------------------------
 data_filter <- data_filter %>% 
   mutate(date_time = lubridate::dmy(dateRep))
 
