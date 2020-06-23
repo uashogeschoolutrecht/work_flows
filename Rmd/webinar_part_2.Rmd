@@ -1,7 +1,7 @@
 ---
-title: "Part 2; Managing your (data) projects with 'Guerilla Analytics'"
+title: "Part 2; Managing your (data) projects with 'Guerrilla Analytics'"
 author: "Marc A.T. Teunis"
-date: "6/10/2020"
+date: "`r Sys.time()`"
 output:
   ioslides_presentation:
     highlight: tango
@@ -31,12 +31,15 @@ library(readxl)
 
 ## Part 2; Contents
 
- >1. Guerilla Analytics principles
+ >1. Guerrilla Analytics principles
  >1. Files and folders / Project structure
  >1. Data-formats & Data shapes / Tidy data
  >1. Encoding variables & Exploratory Data Analysis
 
 <p style="font-size:14px">The slides, data and source code are on Github: https://github.com/uashogeschoolutrecht/work_flows</p> 
+
+<p style="font-size:14px">The slides are also here: https://uashogeschoolutrecht.github.io/</p> 
+
 
 ## Do you recognize this!
 
@@ -51,7 +54,7 @@ knitr::include_graphics(
 
 ```
 
-## The Guerilla Analytics Principles
+## The Guerrilla Analytics Principles
 
  >1. Space is cheap, confusion is expensive
  >1. Simple, visual project structures and conventions
@@ -61,7 +64,13 @@ knitr::include_graphics(
  >6. Consolidate team knowledge  
  >7. Use code that runs from start to finish
 
-<p style="font-size:14px">[Guerilla Analytics book](https://guerrilla-analytics.net/)</p>
+<p style="font-size:14px">[Guerrilla Analytics book by Enda Ridge, ](https://guerrilla-analytics.net/)</p>
+
+```{r, dpi = 300}
+knitr::include_graphics(
+  here::here("images", "guerrilla_analytics.jpg")
+)
+```
 
 ## P1: Space is cheap, confusion is expensive
 
@@ -100,36 +109,27 @@ fs::dir_tree(here::here("wrong_structure"))
 fs::dir_tree(here::here("data-raw"))
 ```
 
-## Data integrity
+## Data integrity {.build}
 
 MD5SUMS are
 
- >- A unique code to identify a file (`r tools::md5sum(here::here("Rmd", "webinar_part_2.html"))`)
- >- Can be used to verify the integrity and the version of a file
+ >- A unique code to identify a file (_This file -> `r tools::md5sum(here::here("Rmd", "webinar_part_2.html"))`_)
+ >- Can be used to verify the integrity or the version of a file
  >- Can be genarated from Windows, MacOS, Linux or from within e.g. R/Python/Bash
- >- If you sent a data file, sent the md5sums along
- >- md5sums are also used for safety: checking an md5sum ensures that the code is valid and has not changed
+ >- md5sums are also used for safety: checking an md5sum ensures that the code is valid and has not changed (e.g. [Anaconda](https://www.digitalocean.com/community/tutorials/how-to-install-anaconda-on-ubuntu-18-04-quickstart))
+ >- There are many different types of hash functions [MD5, SHA256 are much used for data and software](https://en.wikipedia.org/wiki/List_of_hash_functions)
  
-## How does that look in practice? {.build}
+_In webinar 3, I will show you how to generate these yourself! (from Windows and R). Look at the file "./data-raw/D010/supporting/md5sums.R" if you can't wait_ 
 
-```{r}
-head(readr::read_csv(here::here("data", "D020", "tidy_excel.csv")), 1)
-```
-```{r, echo=TRUE}
-x <- readr::read_lines(here::here("data", "D020", "tidy_excel.csv.md5")); x
-y <- tools::md5sum(here::here("data", "D020", "tidy_excel.csv")) %>% unname(); y
-```
-```{r, echo=TRUE}
-x == y
-```
- 
 ## Sharing data
 
  >- Remove sensitive data from each file by pseudoencoding or anonymizing or removing
  >- Removing or encoding sensitive data can be done from within R
  >- Agree on a file naming convention within a team, before the work starts
  >- Agree on where data is stored and who has access
- >- Suppress the impulse to store multiple copies of the data in different locations (cloud and offline is a good idea, synchronizing is a bad idea)
+ >- Suppress the impulse to store multiple copies of the data in different locations
+ >- If you sent data files, sent the md5sums along
+ 
 
 ## Recieving data
 
@@ -320,6 +320,9 @@ knitr::include_graphics(
 
 
 ## A penguin wrap up
+
+<p style="font-size:14px">[palmerpenguins](https://github.com/allisonhorst/palmerpenguins)</p> 
+
 ```{r}
 # install.packages("remotes")
 # remotes::install_github("allisonhorst/palmerpenguins")
@@ -327,9 +330,6 @@ library(palmerpenguins)
 data_penguins <- palmerpenguins::penguins_raw 
 data_penguins
 ```
-
-<p style="font-size:14px">[palmerpenguins](https://github.com/allisonhorst/palmerpenguins)</p> 
-
 
 ## Exploratory data Analysis - missingness
 ```{r, dpi = 130}
@@ -377,7 +377,7 @@ knitr::include_graphics(
 
 Part 3; Reproducible (Open) Science @HU - Tools (July 6th, 2020)
  
-[Peer Support Group Data Science](tln.hu.nl)
+[Peer Support Group Data Science - not live yet](https://tln.hu.nl)
 
 [support voor onderzoek](https://bibliotheek.hu.nl/onderzoekers/)
 

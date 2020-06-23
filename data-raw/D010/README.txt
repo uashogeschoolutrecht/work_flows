@@ -1,6 +1,14 @@
+###################################################################################
+# Data journal to files yyyy_mm_dd_covid_ecdc_cases_geography.csv
+# Original dat from the European Center for Desease Control
+# Author: Marc Teunis
+# Date: 22 June, 2020
+###################################################################################
+ 
 ## README for File "./data-raw/Do10/covid_ecdc_cases_geography.R"
 
 The data in this file was derived from a direct download of the csv file from R with script:
+
 "./data-raw/D010/supporting/covid_ecdc_cases_geography.R"
 
 The data dictionary: 

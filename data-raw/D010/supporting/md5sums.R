@@ -1,3 +1,9 @@
+####################################################################
+# Calculate md5sum checks for downloaded data file, and write file
+# Author: Marc Teunis
+# Date: 22 June, 2020
+####################################################################
+
 md5sum(files = here::here(
   "data-raw",
   "D010",

@@ -1,4 +1,8 @@
-## to create a task that rund daily
+#######################################################################
+# to create a task that runs daily
+# Author: Marc Teunis
+# Date 22 June, 2020
+########################################################################
 
 taskscheduleR::taskscheduler_create(
   taskname = "covid_daily_update3", 

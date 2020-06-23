@@ -1,6 +1,11 @@
-## knit covid graphs with different params
-## for automated reporting
+#############################################
+# knit covid graphs with different params
+# for automated reporting
+# Author: Marc Teunis
+# Date: 22 June 2020
+#############################################
 
+## Automated report is stored in "./Rmd/automated_reports
 rmarkdown::render(
   params = list(month = paste("May June"), 
                 geo_id = as.character("NL BE")),
