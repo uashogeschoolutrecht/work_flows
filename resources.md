@@ -27,4 +27,5 @@
 
 ## Further reading
 
+[The Art of Statistics](https://github.com/dspiegel29)
 

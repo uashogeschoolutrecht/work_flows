@@ -3,6 +3,7 @@ title: "Reproducible (Open) Science"
 author: '[Marc A.T. Teunis, PhD](https://www.hu.nl/onderzoek/onderzoekers/marc-teunis)'
 date: "`r Sys.time()`"
 output:
+  powerpoint_presentation:
   ioslides_presentation:
     highlight: tango
 subtitle: Why, What and How in a series of three webinars
