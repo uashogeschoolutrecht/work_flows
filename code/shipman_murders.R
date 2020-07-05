@@ -5,6 +5,9 @@
 # Sr. Prof. Dr. David Spiegelhalter
 # Data and codefrom: https://github.com/dspiegel29/ArtofStatistics
 
+library(tidyverse)
+library(ggExtra)
+library(janitor)
 
 
 shipman_murders <- read_csv(
