@@ -21,9 +21,15 @@
 
  # run the code in ./code/shipman_murders.R
 
-## Downloading Files: more -> Download
+## Downloading Files: more -> Download or use CuberDuck: see:
+## https://www.youtube.com/watch?v=UYDWOvyzoAQ
 
 
 ## Demo 2: How to Connect RStudio to Research Drive
 
-
+# login to research drive and show folder IMPACT
+# Go to deeplearning.hudatascience.nl
+# login with credentials
+# show folder impact (empty)
+# run mount command
+# show folder again

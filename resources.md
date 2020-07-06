@@ -25,7 +25,9 @@
 
 [covid-19 data - ECDC](https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide)
 
-## Further reading
+## Further reading/viewing
 
 [The Art of Statistics](https://github.com/dspiegel29)
+
+[CyberDuck tutorial](https://www.youtube.com/watch?v=UYDWOvyzoAQ)
 

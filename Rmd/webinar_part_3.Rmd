@@ -87,11 +87,11 @@ knitr::include_graphics(
 ## Exploring the tools to do (Open) Data Science at HU
 
  >- A little introduction to data formats and shapes
- >- Introducing the tools; Github - HU ResearchDrive - RStudio trinity
+ >- Introducing the tools; Github + RStudio + HU ResearchDRive
  >- Introducing RStudio and the `{tidyverse}`
- >- Getting materials from Github
- >- Getting access to HU ResearchDrive
- >- (Getting access to HU ResearchDrive from within RStudio)
+ >- Getting materials from Github **LIVE DEMO**
+ >- Getting access to HU ResearchDrive **LIVE DEMO**
+ >- (Getting access to HU ResearchDrive from within RStudio **LIVE DEMO**)
 
 ## Data-formats - Non-Proprietary {.build}
 
@@ -222,32 +222,25 @@ ggplot(aes(
 ```
 <p style="font-size:14px">[Spiegelhalter, 2020, "The Art of Statistics"](https://github.com/dspiegel29/ArtofStatistics)</p> 
 
-## Getting the code into you environment; introducing the jargon {.build}
+## Getting the code for all webinars into your RStudio environment; introducing the jargon {.build}
 
- >- **(Create a Github user-account)** 
- >- **(Fork repo from Github to your own account)**
+ >- **Get an Rstudio installation or account (via me)**
  >- **Clone the repo to your RStudio Env.**
+ >- **Install any code dependencies in your Env.** 
+ >- **Run the code, and adapt if you want**
  >- *Work on the code*
  >- *Create a commit*
  >- *Create a pull request*
  
-**Live Demo** 
+**LIVE DEMO** 
 
 ## Github user-account
 
  >- https://github.com
  >- You can create personal and private repos
- >- Adding a README to each repo is a good idea
- >- The HU Github repos: https://github.com/uashogeschoolutrecht  
+ >- Adding a README.md to each repo is a good idea
+ >- The HU Github Data Science repos: https://github.com/uashogeschoolutrecht  
  
-## Fork the spiegelhalter "ArtOfStatistics" repo
-
- - Seach *spiegelhalter* in Github.com
- - https://github.com/dspiegel29/ArtofStatistics
- - Go to repo "ArtOfStatistics"
- - Click **"Fork"** button
- - Copy url of "Forked" repo
-
 ## RStudio
 
 >- Integrated Development for R (and Python, Stan, C++, D3, SQL)
@@ -263,28 +256,11 @@ ggplot(aes(
  >- Paste url from clipboard in url field
  >- Let the clone finish
  >- Start using the code!
-
- **LIVE DEMO**
-
-## Getting the slides is easy now!
-
- >- Fork https://gihub.com/uashogeschoolutrecht/work_flows
- >- Clone this "Forked" repo to your RStudio Env.
- >- The slides are in "./Rmd"
- >- This repo contains all content from the webinars
- >- My code will work from a cloned github repo in an RSTudio Project, how?
-
-## Be relative!
-[Use the `{here}` package!](https://github.com/jennybc/here_here) 
+ >- My code will work from a cloned github repo in an RStudio Project because of the [`{here}` package!](https://github.com/jennybc/here_here) 
 
 _Stop using `setwd()`!!!_
 
-```{r, echo=TRUE}
-## relative path 
-file.path("Rmd", "webinar_part_2.html")
-## the actual path
-here::here("Rmd", "webinar_part_2.html")
-```
+ **LIVE DEMO**
 
 ## HU ResearchDrive
 
@@ -293,8 +269,8 @@ here::here("Rmd", "webinar_part_2.html")
 https://bibliotheek.hu.nl/onderzoekers/datamanagement/
  >- Access though webinterfacte and other software
  >- SFTP software [CyberDuck](https://cyberduck.io/) (you need admin rights)
- >- RClone (commandline interface)
- 
+ >- Rclone (commandline interface)
+
 ## Which tool for what?
 ```{r, dpi = 70}
 knitr::include_graphics(
@@ -306,40 +282,11 @@ knitr::include_graphics(
 )
 ```
 
-## WebDav token 1/3
-```{r, dpi = 70}
-knitr::include_graphics(
-  file.path(
-    image_dir,
-    "Presentatie1",
-    "Dia14.JPG"
-  )
-)
-```
-
-## WebDav token 2/3
-```{r, dpi = 70}
-knitr::include_graphics(
-  file.path(
-    image_dir,
-    "Presentatie1",
-    "Dia15.JPG"
-  )
-)
-```
-
-## WebDav token 3/3
-```{r, dpi = 70}
-knitr::include_graphics(
-  file.path(
-    image_dir,
-    "Presentatie1",
-    "Dia16.JPG"
-  )
-)
-```
-
 ## Access HU-ResearchDrive from RStudio
+To make this work you will need a WebDav token from HU ResearchDrive 
+
+`Profile -> Security -> Create App`
+
 ```{r, dpi = 80}
 knitr::include_graphics(
   file.path(
@@ -349,7 +296,6 @@ knitr::include_graphics(
   )
 )
 ```
-
 **Live Demo**
 
 
