@@ -30,15 +30,11 @@ library(nlme)
 
 ## Contents
 
-**This is part 1 of a series of three course days**
-
  - Part 1; Introducing R
  - Part 2; Data Wrangling
  - Part 3; Visualizations and a bit statistics
 
 <p style="font-size:18px">The complete source code for the webinars and all dependent data, and files can be found on [Github.com/uashogeschoolutrecht](https://github.com/uashogeschoolutrecht/staRters).
-
-In part 3, I will show you how to use this Github resource for your own work.</p>
 
 ## Introducing Reproducible (Open) Science
 
@@ -117,12 +113,6 @@ knitr::include_graphics(
  >- Learning to use a programming language takes time but pays of at the long run (for all of science)
  >- And it is fun!
 
-**(Literate) programming is a way to connect narratives to data, methods and results**
-
-```{r}
-knitr::include_graphics(file.path(image_dir,"rmd_printscr.png"))
-```
-
 ## To  replicate a scientific study we need at least:
 
  > - Scientific context, research questions and state of the art [<mark>P<mark/>]
@@ -152,13 +142,11 @@ To analyze this experiment statistically, the model would need to include: the r
 
 ## Mixed effects models
 
-A typical analysis method for this type of randomized block design is a so-called 'multi-level' or also called 'mixed-effects' or 'hierarchical' models. An analysis method much used in clinical or biological scientific practice. 
+A typical analysis method for this type of randomized block design is a so-called 'multi-level' or also called 'mixed-effects' or 'hierarchical' model. An analysis method much used in clinical or biological scientific practice. 
  
 You could also use one-way ANOVA but I will illustrate why this is not a good idea 
 
 ## What do we minimally need, to replicate the science of this experiment? {.build}
-
-I will show:
 
  >- the data 
  >- an exploratory graph 
@@ -316,8 +304,6 @@ If you want to reproduce, add-on, falsify or apply your own ideas to this exampl
 **In this course, I will show you how to run, use and organize code like this!**
 
 ```{r, dpi = 60}
-
-
 knitr::include_graphics(
   here::here(
     "images",
@@ -326,4 +312,3 @@ knitr::include_graphics(
 )
 ```
 
-## 
