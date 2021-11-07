@@ -3,10 +3,12 @@ title: "Reproducible (Open) Science"
 author: '[Marc A.T. Teunis, PhD](https://www.hu.nl/onderzoek/onderzoekers/marc-teunis)'
 date: "`r Sys.time()`"
 output:
-  powerpoint_presentation:
   ioslides_presentation:
     highlight: tango
-subtitle: Why, What and How in a series of three webinars
+  beamer_presentation:
+    highlight: tango
+  powerpoint_presentation: null
+subtitle: Ontwikkelfestival 'R for staRters'
 always_allow_html: yes
 widescreen: yes
 ---
@@ -28,17 +30,17 @@ library(nlme)
 
 ## Contents
 
-**This is part 1 of a series of three webinars**
+**This is part 1 of a series of three course days**
 
- - Part 1; Introducing Reproducible (Open) Science (June 11th, 2020)
- - Part 2; Managing your project files and data with 'Guerilla Analytics' (June 23rd, 2020)
- - Part 3; Reproducible (Open) Science - Tools (July 6th, 2020) 
+ - Part 1; Introducing R
+ - Part 2; Data Wrangling
+ - Part 3; Visualizations and a bit statistics
 
-<p style="font-size:18px">The complete source code for the webinars and all dependent data, and files can be found on [Github.com/uashogeschoolutrecht](https://github.com/uashogeschoolutrecht/work_flows).
+<p style="font-size:18px">The complete source code for the webinars and all dependent data, and files can be found on [Github.com/uashogeschoolutrecht](https://github.com/uashogeschoolutrecht/staRters).
 
 In part 3, I will show you how to use this Github resource for your own work.</p>
 
-## Part 1; Introducing Reproducible (Open) Science
+## Introducing Reproducible (Open) Science
 
  1. When things go wrong 
  1. Why Reproducible (Open) Science?
@@ -47,63 +49,6 @@ In part 3, I will show you how to use this Github resource for your own work.</p
  
 $Reproducible\ (Open)\ Science =$ 
 $Reproducible\ Research + Open\ Science$
-
-## Is (hydroxy)chloroquine really an option for treating COVID-19?
-As you probably know, hydroxychloroquine was repeatedly touted as a promising cure for COVID-19 by US President Donald Trump 
-
-```{r, dpi = 70}
-knitr::include_graphics(
-  file.path(
-    image_dir,
-    "trump_chloroquine.png"
-  )
-)
-```
-
-<p style="font-size:14px">https://www.washingtonpost.com/politics/2020/04/07/trumps-promotion-hydroxychloroquine-is-almost-certainly-about-politics-not-profits/</p>
-
-## But how are we really doing with (hydroxy)chloroquine as a treatment for COVID-19?
-
-```{r}
-knitr::include_graphics(
-  file.path(
-    image_dir,
-    "lancet_covid.png"
-  )
-)
-
-```
-
-<p style="font-size:14px">https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)31180-6/fulltext</p>
-
-## What was the reason for retracting this paper?
-
-<p style="font-size:18px">_"Our independent peer reviewers informed us that Surgisphere would not transfer the full dataset, client contracts, and the full ISO audit report to their servers for analysis as such transfer would violate client agreements and confidentiality requirements"_</p>
-
- - Company Surgisphere ('data owner') did not share raw data
- - At time of publication (raw) data and analysis (code) was not included in the manuscript
- - The authors initiated the retract
-
-<p style="font-size:14px">https://www.sciencemag.org/news/2020/06/two-elite-medical-journals-retract-coronavirus-papers-over-data-integrity-questions</p>
-
-## Why is this a problem?
-
- >- Scientific conclusions get picked up by the media, retracting statements is difficult
- >- The credibility of the Journal, the researchers and the affiliated institutions are at stake (people got sacked over this!)
- >- Clinical studies to hydroxy(choloroquine) were halted because of this paper 
- >- The credibility of the company Surgisphere is at stake (they should have prevented this...)
- >- The credibility of Science as a whole is at stake ('in the eye of the beholder')
-
-## The Lancet does not adhere to Reproducible (Open) Science {.build}
-
-Would the Lancet have adopted the Reproducible (Open) Science framework:
-
- >- There would have been no publication, so no retraction necessary
- >- The manuscript of this paper would not even have made it through the first check round
- >- All data, code, methods and conclusions would have been submitted 
- >- This would have enabled a complete and thorough peer-review process that includes replication of (part of) the data analysis of the study
- >- Focus should be on the data and methods, not on the academic narratives and results ...
- >- In physics and bioinformatics this is already common practice 
 
 ## Data, methods and logic {.build}
 
@@ -149,7 +94,7 @@ knitr::include_graphics(
 
 How would you 'describe' the steps of an analysis or creation of a graph when you use GUI* based software? 
 
-_"You can only do this using code, so it is (basically) impossible in a GUI"_**
+**_"You can only do this using code, so it is (basically) impossible in a GUI"_**
 
 ```{r, dpi = 80}
 knitr::include_graphics(
@@ -162,7 +107,7 @@ knitr::include_graphics(
 
 <p style="font-size:14px">*[Graphical User Interface (GUI)...is a form of user interface that allows users to interact with electronic devices through graphical icons and audio indicator such as primary notation, instead of text-based user interfaces, typed command labels or text navigation...](https://en.wikipedia.org/wiki/Graphical_user_interface)</p>
 
-<p style="font-size:14px">**The file "./Rmd/steps_to_graph_from_excel_file.html" shows you how to do this using the programming language R. In webinar part 3, we will revisit this example.</p>
+<p style="font-size:14px">**The file "./Rmd/steps_to_graph_from_excel_file.html" shows you how to do this using the programming language R. In day 3, we will revisit this example.</p>
 
 ## Programming is essential for Reproducible (Open) Science {.build}
 
@@ -170,6 +115,7 @@ knitr::include_graphics(
  >- The script(s) function as a (data) analysis journal 
  >- Code is the logic that connects the data and methods to conclusions 
  >- Learning to use a programming language takes time but pays of at the long run (for all of science)
+ >- And it is fun!
 
 **(Literate) programming is a way to connect narratives to data, methods and results**
 
@@ -301,7 +247,7 @@ result$tTable %>% as.data.frame() %>% knitr::kable()
 A residual plot shows the 'residual' error ('unexplained variance') after fitting the model. Under the Normality assumption standardized residuals should:
  
  >1. Be normally distributed around 0
- >1. Display no obvious 'patters'
+ >1. Display no obvious 'patterns'
  >1. Should display overall equal 'spread' above and below 0 ('assumption of equal variance')
  
 ## Residual plot
@@ -367,59 +313,17 @@ odz: _Practice what you preach_
 
 If you want to reproduce, add-on, falsify or apply your own ideas to this example, you can find the code (and data) in [Github.com](https://github.com/uashogeschoolutrecht/work_flows)
 
-**In webinar 3, I will show you how to actually run, use and organize code like this!**
+**In this course, I will show you how to run, use and organize code like this!**
 
 ```{r, dpi = 60}
-knitr::include_graphics(
-  file.path(image_dir,
-  "git_collaboration.png")
-)
-```
 
-## Thank you for your attention!
 
-```{r, dpi = 150}
-knitr::include_graphics(
-  file.path(
-    image_dir,
-    "Pepper.png")
-)
-```
-
-**UPCOMING WEBINARS:**
-
- - Part 2; Managing your project files and data with 'Guerilla Analytics' 
- (~June 23rd, 2020)
- - Part 3; Reproducible (Open) Science @HU - Tools (~July 6th, 2020)
- 
- [Peer Support Group Data Science](tln.hu.nl)
- [support voor onderzoek](https://bibliotheek.hu.nl/onderzoekers/)
-
-## Example; The Open Science Framework [OSF](https://osf.io/)
-```{r}
 knitr::include_graphics(
   here::here(
     "images",
-    "cos-shield.png")
+    "bumble_bee_let_s_go.gif"
+  )
 )
 ```
 
-$Reproducible\ Science = P + D + C + OAcc + OSrc$ 
-
-**OSF has it all**
-
-<p style="font-size:14px">$P = Publication$, $D = Data$, $C = Code$, $OAcc = Open\ Access$, $OSrc = Open\ Source$ </p> 
-
-## OSF - Reproducible Project: Psychology
-
- >- 100 publications in Psychology journals
- >- Results from half of these publications could be reproduced
- >- Full access to P, D and C in [OSF](https://osf.io/ezcuj/)
- >- The publication is not published in an OAcc journal but:
- >- [The submitted manuscript is available in OSF](http://pps.sagepub.com/content/7/6/657.abstract)
- >- [The R code used is available in OSF](https://osf.io/fkmwg/)  
- 
- $RP:Psychology = P + D + C + OSrc\ (+ OAcc)$
-
-<p style="font-size:14px">$P = Publication$, $D = Data$, $C = Code$, $OAcc = Open\ Access$, $OSrc = Open\ Source$ </p> 
-
+## 
