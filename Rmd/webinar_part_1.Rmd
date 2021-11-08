@@ -8,7 +8,7 @@ output:
   beamer_presentation:
     highlight: tango
   powerpoint_presentation: null
-subtitle: Ontwikkelfestival 'R for staRters'
+subtitle: "Ontwikkelfestival 'R for staRters'"
 always_allow_html: yes
 widescreen: yes
 ---
